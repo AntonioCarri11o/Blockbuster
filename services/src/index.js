@@ -1,5 +1,6 @@
 const express = require('express');
 const employees=require('./routes/employee.routes.js');
+const auth=require('./auth/auth.controller.js');
 //const cors = require('cors');
 
 const app = express(); // < -- usermos el servicio de app
@@ -14,7 +15,7 @@ app.set('json spaces',2) //Espacios para nuestro json *Es irrelente pero lo hace
 
 //Rutas para nuestro servicio
 app.use('/api',employees.routerEmployee);
-
+app.use('/api',auth.authRouter);
 
 //Arranque de nuestro Server
 app.listen(app.get('port'), () =>{
