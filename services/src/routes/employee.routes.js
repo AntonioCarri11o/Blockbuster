@@ -1,16 +1,13 @@
-const Router = require('express');
-const{getEmployees, createEmployee, updateEmployee, setPassword}=require('../controllers/employee.controller.js');
-const routerEmployee=Router();
+const express=require("express");
+const { getEmployees, createEmployee, getById, update } = require('../controllers/employee.controller');
+const router=express.Router();
 
+router.get("/employee/",getEmployees);
+router.get("/employee/:id",getById);
+router.post("/employee/",createEmployee);
+router.put("/employee/",update);
 
-routerEmployee.get('/employee/',getEmployees)
-routerEmployee.post('/employee/',createEmployee)
-routerEmployee.put('/employee/',updateEmployee)
-routerEmployee.put('/employee/password/',setPassword)
-module.exports={
-    routerEmployee
-}
-
+module.exports=router;
 //Get
 //Consultar todos: http://localhost:3000/api/employee
 

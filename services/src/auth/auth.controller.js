@@ -1,22 +1,34 @@
-const {Router}=require('express');
-const { login } = require('../auth/auth.gateway.js');
-const {response}=require('express');
+const Employee= require("../models/employee");
+const jwt=require('jsonwebtoken');
+const config=require('../config');
+const Role=require('../models/Role')
 
-const signin=async(req, res=response)=>{
-    try{
-        const {username, password}=req.body;
-        const token = await login({ username, password });
-        res.status(200).json({token});
-    }catch(error){
-        console.log(error);
-        res.status(400).json({message:"ha ocurrido un error"})
+const signUp=async(req,res)=>{
+    const {_id,username,email,pass,roles}=req.body;
+    const empFound=Employee.find({email});
+    const newEmployee= new Employee({
+        _id,
+        username,
+        email,
+        password:await Employee.encryptPassword(pass)    
+    });
+    if(roles){
+        const foundRoles=await Role.find({name:{$in:roles[0]}})
+        newEmployee.roles=foundRoles.map(role=>role._id)
+    }else{
+        const role=await Role.findOne({name:"employee"})
+        newEmployee.roles=[role._id];
     }
-    
-};
+    const savedEmployee=await newEmployee.save();
+    const token=jwt.sign({id:savedEmployee._id},config.SECRET,{expiresIn:86400})
+    res.json({token});
+}
 
-const authRouter=Router();
-authRouter.post(`/login`, signin);
+const signIn=(req,res)=>{
+    res.json('signIn');
+}
 
 module.exports={
-    authRouter
+    signUp,
+    signIn,
 }
