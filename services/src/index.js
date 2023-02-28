@@ -1,7 +1,7 @@
 const express = require('express');
 const employees=require('./routes/employee.routes.js');
 const customers=require('./routes/customers.routes.js');
-const auth=require('./auth/aurh.routes');
+const auth=require('./auth/auth.routes');
 const pkg=require('../package.json');
 const morgan=require('morgan');
 const mongoose=require("mongoose");
