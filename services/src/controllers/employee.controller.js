@@ -4,12 +4,24 @@ const Role =require('../models/Role')
 
 const createEmployee=async(req,res)=>{
     const employee=employeeSchema(req.body);
-    employee.password=await employeeSchema.encryptPassword(employee.password);
-    const role=await Role.findOne({name:"employee"})
-    employee.roles=[role._id];
-    console.log(employee)
-    const saveEmployee=await employee.save();
-    res.status(200).json({message:"Empleado registrado!"})
+    console.log(employee.email);
+    const searchEmployee=await 
+    employeeSchema.find();
+    console.log(searchEmployee)
+    if(searchEmployee){
+        res.status(200).json(searchEmployee)  
+        console.log(searchEmployee);
+    }else{
+        /*
+        employee.password=await employeeSchema.encryptPassword(employee.password);
+        const role=await Role.findOne({name:"employee"})
+        employee.roles=[role._id];
+        console.log(employee)
+        const saveEmployee=await employee.save();
+        */
+        res.status(200).json(searchEmployee)    
+    }
+
 }
 const getEmployees=async(req,res)=>{
     const listEmployees=await employeeSchema.find();

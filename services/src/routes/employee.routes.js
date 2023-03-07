@@ -1,8 +1,10 @@
 const express=require("express");
 const { getEmployees, createEmployee, getById, update } = require('../controllers/employee.controller');
 const router=express.Router();
+const {verifyToken}=require('../middlewares');
 
-router.get("/employee/",getEmployees);
+
+router.get("/employee/",verifyToken,getEmployees);
 router.get("/employee/:id",getById);
 router.post("/employee/",createEmployee);
 router.put("/employee/",update);

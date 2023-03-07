@@ -1,11 +1,11 @@
 const Employee= require("../models/employee");
 const jwt=require('jsonwebtoken');
 const config=require('../config');
-const Role=require('../models/Role')
+const Role=require('../models/Role');
 
 const signUp=async(req,res)=>{
     const {_id,username,email,pass,roles}=req.body;
-    const empFound=Employee.find({email});
+    //const empFound=Employee.find({email});
     const newEmployee= new Employee({
         _id,
         username,
@@ -24,8 +24,14 @@ const signUp=async(req,res)=>{
     res.json({token});
 }
 
-const signIn=(req,res)=>{
-    res.json('signIn');
+const signIn=async(req,res)=>{
+    const emp=await Employee.findOne({email:req.body.email}).populate("roles");
+    if(!emp) return res.status(400).json({message:"Employee not found"});
+    const matchPassword=await Employee.comparePassword(req.body.password,emp.password);
+
+    if(!matchPassword) return res.status(401).json({token:null, message:"Invalid password"});
+    const token=jwt.sign({id:emp._id}, config.SECRET,{ expiresIn:86400});
+    res.json({token});
 }
 
 module.exports={
