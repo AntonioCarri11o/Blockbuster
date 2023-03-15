@@ -2,6 +2,7 @@ const express = require('express');
 const employees=require('./routes/employee.routes.js');
 const customers=require('./routes/customers.routes.js');
 const movies=require('./routes/movie.routes.js')
+const sales=require('./routes/sale.routes.js')
 const auth=require('./auth/auth.routes');
 const pkg=require('../package.json');
 const morgan=require('morgan');
@@ -37,12 +38,15 @@ app.get("/",(req,res)=>{
 app.use(express.json());
 app.use('/api',customers);
 app.use('/api',employees);
-app.use('/api',movies)
+app.use('/api',movies);
+app.use('/api',sales);
 app.use('/api',auth);
 //mongodb connection
 app.listen(app.get('port'), () =>{
     mongoose.connect(process.env.MONGODBURI).then(()=>{console.log("Conected to MongoDB");createRoles();})
     .catch((error)=>console.log(error));
     console.log(`Server running in port: ${app.get('port')}`);
+    let now=new Date();
+    console.log(now.toDateString());
     //createRoles();
 });
