@@ -1,7 +1,7 @@
-const mysql = require('mysql2/promise');
+//const mysql = require('mysql2/promise');
 const db = require('mysql2');
 require('dotenv').config();
-
+/*
 const database=mysql.createPool({
     host:'localhost',
     user:'root',
@@ -17,7 +17,7 @@ const client = db.createPool({
     port:3306,
     database:'blockbuster'
 });
-
+*/
 const query=(query,params)=>{
     return new Promise((resolve, reject)=>{
         client.getConnection((err,client)=>{

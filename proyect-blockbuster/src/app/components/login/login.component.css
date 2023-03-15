@@ -9,12 +9,34 @@
     border-radius: 0;
     align-items: center;
     margin: auto;
+    background-color: #1030AD;
+    color: #FFCC00;
+    border:2px solid #FFCC00;
 }
-.card-body{
-
+.form-label{
+    border-radius: 0;
+}
+.form-control{
+    border-radius: 0;
+    border: solid 1px #FFCC00;
+}
+.card-title{
+    text-align: center;
+}
+.card-bottom{
+    text-align: center;
+    width: 100%;
 }
 .inputs{
-
     width: 100%;
     margin: auto;
+}
+.btn-login{
+    width: 80%;
+    background-color: #1030AD;
+    color: #FFCC00;
+}
+body {background: url(https://www.epicsound.com/blog/wp-content/uploads/2013/04/photodune-1625438-movies-film-blue-light-background-s.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }

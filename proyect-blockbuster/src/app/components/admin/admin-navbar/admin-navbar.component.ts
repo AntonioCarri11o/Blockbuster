@@ -6,8 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-navbar.component.css']
 })
 export class AdminNavbarComponent {
-  events:string []=[];
-  opened: boolean=false;
-  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
-
+  showFiller = false;
 }

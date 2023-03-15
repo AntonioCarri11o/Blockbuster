@@ -5,9 +5,9 @@ const {verifyToken}=require('../middlewares');
 
 
 router.get("/employee/",verifyToken,getEmployees);
-router.get("/employee/:id",getById);
-router.post("/employee/",createEmployee);
-router.put("/employee/",update);
+router.get("/employee/:id/",verifyToken,getById);
+router.post("/employee/",verifyToken,createEmployee);
+router.put("/employee/",verifyToken,update);
 
 module.exports=router;
 //Get

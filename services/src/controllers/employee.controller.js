@@ -12,14 +12,12 @@ const createEmployee=async(req,res)=>{
         res.status(200).json(searchEmployee)  
         console.log(searchEmployee);
     }else{
-        /*
         employee.password=await employeeSchema.encryptPassword(employee.password);
         const role=await Role.findOne({name:"employee"})
         employee.roles=[role._id];
         console.log(employee)
         const saveEmployee=await employee.save();
-        */
-        res.status(200).json(searchEmployee)    
+        res.status(200).json(saveEmployee)    
     }
 
 }
