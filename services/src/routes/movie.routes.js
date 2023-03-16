@@ -6,7 +6,7 @@ const router=express.Router();
 //Crear Pelicula
 router.post('/movie/',verifyToken,createMovie);
 router.get('/movie/',verifyToken,getMovies);
-router.get('/movie/:id',verifyToken,getById);
+router.get('/movie/:id/',verifyToken,getById);
 router.post('/movie/getbyname/',verifyToken,getByName);
 router.put('/movie/',verifyToken,update);
 

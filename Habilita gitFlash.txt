@@ -1,1 +1,2 @@
-git config --global --add safe.directory E:/Blockbuster
+git config --global --add safe.directory D:/Blockbuster
+git config --global user.email "20203tn078@utez.edu.mx"

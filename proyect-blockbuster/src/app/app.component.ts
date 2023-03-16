@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,8 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'proyect-blockbuster';
   constructor(private router:Router){
-
+    if(this.router.url==="/" && localStorage.getItem('role')==="admin"){
+      this.router.navigateByUrl("/admin/home")
+    }
   }
+
+  title = 'proyect-blockbuster';
+
 }

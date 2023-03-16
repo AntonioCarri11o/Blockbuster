@@ -1,37 +1,43 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { AppRoutingModule } from './app-routing.module';
+//import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from '../app/components/login/login.component';
+import {HttpClientModule} from "@angular/common/http";
 import { NavigationComponent } from './shared/navigation/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { ListEmployeesComponent } from './components/admin/list-employees/list-employees.component';
-import { AdminNavbarComponent } from './components/admin/admin-navbar/admin-navbar.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { materialModules } from './types/material-modules';
+import { AuthModule } from './modules/auth/auth.module';
+import { AdminComponent } from './components/admin/admin.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
+import { ListMoviesComponent } from './components/admin/list-movies/list-movies.component';
 const appRoutes:Routes=[
   {path:'',component:NavigationComponent},
+  {path:'admin',component:AdminComponent},
+  {path:'admin/home',component:AdminHomeComponent},
+  {path:`admin/movies`,component:ListMoviesComponent},
 ]
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     NavigationComponent,
-    ListEmployeesComponent,
-    AdminNavbarComponent,
+    AdminComponent,
+    EmployeeComponent,
+    AdminHomeComponent,
+    ListMoviesComponent,
 
   ],
   imports: [
-    RouterModule,
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
-    AppRoutingModule,
+    //AppRoutingModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule
+    ...materialModules,
+    AuthModule,
+    HttpClientModule
   ],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent]
 })

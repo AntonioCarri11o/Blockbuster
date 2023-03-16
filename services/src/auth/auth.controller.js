@@ -26,12 +26,14 @@ const signUp=async(req,res)=>{
 
 const signIn=async(req,res)=>{
     const emp=await Employee.findOne({email:req.body.email}).populate("roles");
+    const [role]=emp.roles;
+    console.log(role.name);
     if(!emp) return res.status(400).json({message:"Employee not found"});
     const matchPassword=await Employee.comparePassword(req.body.password,emp.password);
 
     if(!matchPassword) return res.status(401).json({token:null, message:"Invalid password"});
     const token=jwt.sign({id:emp._id}, config.SECRET,{ expiresIn:86400});
-    res.json({token});
+    res.json({token,"role":role.name});
 }
 
 module.exports={
