@@ -1,0 +1,44 @@
+
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <div class="d-flex">
+  <button mat-raised-button color="primary" (click)="addMovie()">Nueva<mat-icon>add</mat-icon></button>
+  <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar por título" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="tittle">
+      <th mat-header-cell *matHeaderCellDef> Título </th>
+      <td mat-cell *matCellDef="let movie" >
+        <img src="../../../../assets/img/default/port.jpg" class="port">
+        <p>{{movie.tittle}}</p>
+      </td>  
+    </ng-container>
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef> Ficha </th>
+      <td mat-cell *matCellDef="let movie">
+        <p>Duración: {{movie.duration}}</p>
+        <p>Productora: {{movie.producer}}</p>
+        <p>Idiomas: {{movie.languages}}</p>
+        <p>Género: {{movie.genre}}</p>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="inventory">
+      <th mat-header-cell *matHeaderCellDef> Detalles de venta </th>
+      <td mat-cell *matCellDef="let movie">
+        <p>Precio: {{movie.price}}</p> 
+        <p>Stock: {{movie.stock}}</p> 
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let movie" >
+        <div *ngIf="movie.status=='Disponible'"class="active"></div>
+        <div *ngIf="movie.status=='Agotado'"class="inactive"></div> 
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+    <tr mat-row    *matRowDef="let row; columns: displayedColumns; let movie"(click)="updateMovie(movie)"></tr>
+  </table>
+</section>

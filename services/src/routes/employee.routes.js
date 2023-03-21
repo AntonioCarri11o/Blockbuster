@@ -1,13 +1,15 @@
 const express=require("express");
-const { getEmployees, createEmployee, getById, update } = require('../controllers/employee.controller');
+const { getEmployees, createEmployee, getById, update, changePassword, deleteEmployee } = require('../controllers/employee.controller');
 const router=express.Router();
 const {verifyToken}=require('../middlewares');
 
 
-router.get("/employee/",verifyToken,getEmployees);
-router.get("/employee/:id/",verifyToken,getById);
-router.post("/employee/",verifyToken,createEmployee);
-router.put("/employee/",verifyToken,update);
+router.get("/employee/",getEmployees);
+router.get("/employee/:id/",getById);
+router.post("/employee/",createEmployee);
+router.put("/employee/",update);
+router.put("/employee/password/",changePassword);
+router.delete("/employee/:id/",deleteEmployee);
 
 module.exports=router;
 //Get

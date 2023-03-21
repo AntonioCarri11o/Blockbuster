@@ -3,7 +3,6 @@ const bcrypt=require('bcryptjs');
 
 const employeeSchema=mongoose.Schema(
     {
-    "_id":{type:Number},
     "name":{type:String},
     "lastname":{type:String},
     "email":{type:String},

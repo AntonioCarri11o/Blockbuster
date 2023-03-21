@@ -1,12 +1,29 @@
 const express = require("express");
 const movieSchema = require("../models/movie");
+const getImages=(req,res)=>{
+  res.sendFile('../storage/imgs/movies/spider.jpg',{root:__dirname});
+}
 
 const createMovie = async (req, res) => {
   const movie = movieSchema(req.body);
+  console.log(movie);
+  /*
+  const movie=movieSchema({
+    tittle,
+    duration,
+    price,
+    stock,
+    producer,
+    languages,
+    status,
+    genre,
+    filename
+  })
+  */
   const searchMovie= await movieSchema.aggregate([{$match:{tittle:{$eq:movie.tittle}}}])
   const[body]=searchMovie;
   if(body){
-    console.log(searchMovie);
+    //console.log(searchMovie);
     res.status(400).json({message:"Error película ya registrada"});
   }else{
     const saveMovie = await movie.save();
@@ -16,6 +33,7 @@ const createMovie = async (req, res) => {
 
 const getMovies = async (req, res) => {
   const listMovies = await movieSchema.find();
+  const [...body]= await movieSchema.aggregate([{$project:{"filename":1,"_id":0}}]);
   res.json(listMovies);
 };
 
@@ -42,4 +60,5 @@ module.exports = {
   getById,
   getByName,
   update,
+  getImages
 };

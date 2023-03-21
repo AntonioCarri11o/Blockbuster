@@ -1,0 +1,41 @@
+<div class="row">
+    <div mat-dialog-title class="col"><h1>Actualizar empleado</h1></div>
+    <div class="col right">
+        <button mat-mini-fab matTooltip="Cerrar" color="warn" (click)="close()"><mat-icon>cancel</mat-icon></button>
+    </div>
+</div>
+<div mat-dialog-content>
+
+<form #NewEmployeeForm="ngForm" class="cont" novalidate (submit)="update()">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Nombres</span>
+        <input type="text" matInput required name="name" #name="ngModel" [(ngModel)]="employee.name" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Apellidos</span>
+        <input type="text" matInput required name="lastname" #name="ngModel" [(ngModel)]="employee.lastname" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Email</span>
+        <input type="text" matInput required name="email" #name="ngModel" [(ngModel)]="employee.email" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Nombre de usuario</span>
+        <input type="text" matInput required name="username" #name="ngModel" [(ngModel)]="employee.username" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Edad</span>
+        <input type="number" matInput required name="age" #name="ngModel" [(ngModel)]="employee.age" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Teléfono</span>
+        <input type="text" matInput required name="phone_number" #name="ngModel" [(ngModel)]="employee.phone_number" class="form-control">
+    </div>
+    <div mat-dialog-close class="right">
+        <div mat-dialog-actions >
+        <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+        <button mat-raised-button  type="submit">Actualizar</button>
+        </div>
+    </div>
+</form>
+</div>

@@ -8,12 +8,23 @@ const pkg=require('../package.json');
 const morgan=require('morgan');
 const mongoose=require("mongoose");
 const {createRoles} =require("./libs/initialSetup");
-
+const cors= require ('cors');
+const path=require('path');
+//const sharp = require('sharp');
+//const multer = require('multer');
+//const path=require('path');
+//const {upload}= require('./middlewares/fileUpload')
 
 require ("dotenv").config();
 //const cors = require('cors');
 
 const app = express(); // < -- usermos el servicio de app
+app.use(cors());
+/*
+app.post('/upload/',upload.single('file'),(req,res)=>{
+    res.send({data:'Imagen cargada'})
+})
+*/
 
 /*
 //Middlewares

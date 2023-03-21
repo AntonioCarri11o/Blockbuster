@@ -1,0 +1,45 @@
+
+<div class="row">
+    <div mat-dialog-title class="col"><h1>Nueva película</h1></div>
+    <div class="col right">
+        <button mat-mini-fab matTooltip="Cerrar" color="warn" (click)="close()"><mat-icon>cancel</mat-icon></button>
+    </div>
+</div>
+<form #NewMovieForm="ngForm" class="cont"novalidate (submit)="send()">
+    <div mat-dialog-content>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Título</span>
+            <input type="text" matInput required name="tittle" #name="ngModel" [(ngModel)]="movie.tittle" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Duración (min)</span>
+            <input type="number" matInput required name="duration" #name="ngModel" [(ngModel)]="movie.duration" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Precio</span>
+            <input type="number" matInput required name="price" #name="ngModel" [(ngModel)]="movie.price" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Stock</span>
+            <input type="number" matInput required name="stock" #name="ngModel" [(ngModel)]="movie.stock" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Productora</span>
+            <input type="text" matInput required name="producer" #name="ngModel" [(ngModel)]="movie.producer" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Idiomas</span>
+            <input type="text" matInput required name="languages" #name="ngModel" [(ngModel)]="movie.languages" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Género</span>
+            <input type="text" matInput required name="genre" #name="ngModel" [(ngModel)]="movie.genre" class="form-control">
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="right">
+        <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+        <button mat-raised-button  type="submit">Hecho</button>
+        </div>
+    </div>
+</form>

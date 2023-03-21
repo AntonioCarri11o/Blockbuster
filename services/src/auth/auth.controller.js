@@ -2,6 +2,8 @@ const Employee= require("../models/employee");
 const jwt=require('jsonwebtoken');
 const config=require('../config');
 const Role=require('../models/Role');
+const {Router}=require('express');
+const router= Router();
 
 const signUp=async(req,res)=>{
     const {_id,username,email,pass,roles}=req.body;
