@@ -19,13 +19,17 @@ import { UpdatemovieformComponent } from './components/admin/updatemovieform/upd
 import { ListEmployeesComponent } from './components/admin/list-employees/list-employees.component';
 import { NewemployeeformComponent } from './components/admin/newemployeeform/newemployeeform.component';
 import { UpdateemployeeformComponent } from './components/admin/updateemployeeform/updateemployeeform.component';
+import { SetPasswordComponent } from './components/admin/set-password/set-password.component';
+import { ListGamesComponent } from './components/admin/games/list-games/list-games.component';
+import { NewgameformComponent } from './components/admin/games/newgameform/newgameform.component';
 //import { NewMovieFormComponent } from './components/admin/new-movie-form/new-movie-form.component';
 const appRoutes:Routes=[
   {path:'',component:NavigationComponent},
   {path:'admin',component:AdminComponent},
   {path:'admin/home',component:AdminHomeComponent},
   {path:`admin/movies`,component:ListMoviesComponent},
-  {path:`admin/employees`,component:ListEmployeesComponent}
+  {path:`admin/employees`,component:ListEmployeesComponent},
+  {path:'admin/games',component:ListGamesComponent},
 ]
 @NgModule({
   declarations: [
@@ -40,6 +44,9 @@ const appRoutes:Routes=[
     ListEmployeesComponent,
     NewemployeeformComponent,
     UpdateemployeeformComponent,
+    SetPasswordComponent,
+    ListGamesComponent,
+    NewgameformComponent,
     //NewMovieFormComponent,
 
   ],

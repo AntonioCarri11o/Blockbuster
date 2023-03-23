@@ -4,7 +4,7 @@ export type Employee={
     lastname:string,
     email:string,
     username:string,
-    //password:string,
+    password:string,
     age:number,
     phone_number:string,
     roles:[]

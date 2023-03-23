@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <button mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+        <button mat-fab color="primary" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
         <button mat-button>Home</button>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -12,13 +12,22 @@
                 <a routerLink="/admin/home">Home</a>
             </mat-list-item>
             <mat-list-item>
-                <a routerLink="/admin/sales">Ventas</a>
+                <a routerLink="/admin/sales"><mat-icon>attach_money</mat-icon> Ventas</a>
             </mat-list-item>
             <mat-list-item>
-                <a routerLink="/admin/movies">Peliculas</a>
+                <a routerLink="/admin/movies"><mat-icon>movies</mat-icon> Peliculas</a>
             </mat-list-item>
             <mat-list-item>
-                <a routerLink="/admin/employees">Empleados</a>
+                <a routerLink="/admin/games"><mat-icon>games</mat-icon> Videojuegos</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/admin/employees"><mat-icon>person</mat-icon>Empleados</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/admin/customers"><mat-icon>person_outline</mat-icon> Clientes</a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button color="warn" (click)="signOut()">Cerrar sesión <mat-icon>power_settings_new</mat-icon></button>
             </mat-list-item>
         </mat-list>
     </mat-sidenav>

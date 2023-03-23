@@ -24,7 +24,9 @@ export class SigninComponent {
     console.log("pinche componente jala mierda")
     if(!!localStorage.getItem('token')){
       this.router.navigate(['']);
-      if(!this.generalServices.isLogged) this.router.navigateByUrl('/');
+      if(!this.generalServices.isLogged) {
+        this.router.navigateByUrl('/');
+      }
     }
   }
 

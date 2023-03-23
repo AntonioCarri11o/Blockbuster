@@ -17,8 +17,11 @@ export class AppComponent {
         case "employees":
           this.router.navigateByUrl("/admin/employees")
           break;
+        case "games":
+        this.router.navigateByUrl("/admin/games")
+        break;
         default:
-          this.router.navigateByUrl("admin/home")
+          this.router.navigateByUrl("/admin/home")
           break;
       }
     }

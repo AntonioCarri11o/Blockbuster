@@ -24,11 +24,18 @@ export class EmployeeService{
         }
         return this.http.put<any>(`${APP_URL}api/employee/`,payloaad,{headers});
     }
-    changePassword(payload:any){
+    changePassword(id:string,password:string){
+        const payload={
+            id:id,
+            password:password
+        }
+        console.log(payload);
+        
         const headers={
             "Content-type":"application/json"
         }
         return this.http.put<any>(`${APP_URL}api/employee/password/`,payload,{headers})
+    
     }
     deleteEmployee(id:string){
         return this.http.delete<any>(`${APP_URL}api/employee/${id}`)

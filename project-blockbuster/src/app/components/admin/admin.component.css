@@ -9,5 +9,6 @@ mat-sidenav{
   background-color:"#eee";
 }  
 a{
+  justify-content: center;
   text-decoration: none;
 } 

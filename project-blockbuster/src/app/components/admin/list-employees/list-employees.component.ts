@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/modules/types/employe';
 import {EmployeeService} from 'src/app/services/employee.service'
 import { NewemployeeformComponent } from '../newemployeeform/newemployeeform.component';
+import { SetPasswordComponent } from '../set-password/set-password.component';
 import { UpdateemployeeformComponent } from '../updateemployeeform/updateemployeeform.component';
 
 let employees:Employee[];
@@ -30,7 +31,7 @@ export class ListEmployeesComponent implements OnInit {
     this.employeeService.deleteEmployee(id).subscribe(response=>{console.log(response)});
     window.location.reload();
   }
-  changePasswrod(){
-    
+  changePassword(employee:Employee){
+    const dialogRef=this.dialog.open(SetPasswordComponent,{data:employee,width:"35%"})
   }
 }

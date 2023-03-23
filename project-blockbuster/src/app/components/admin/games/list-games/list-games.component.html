@@ -1,0 +1,45 @@
+
+<section class="example-container mat-elevation-z8" tabindex="0">
+    <div class="d-flex">
+    <button mat-raised-button color="primary" (click)="addGame()">Nuevo<mat-icon>add</mat-icon></button>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar por título" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="tittle">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let game" >
+          <img src="../../../../assets/img/default/gameport.png" class="port">
+          <p>{{game.tittle}}</p>
+        </td>  
+      </ng-container>
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef> Ficha </th>
+        <td mat-cell *matCellDef="let game">
+          <p>Género: {{game.genre}}</p>
+          <p>Calificación: {{game.rate}}</p>
+          <p>Estudio: {{game.studio}}</p>
+          <p>Descripción: {{game.description}}</p>
+          <p>Idiomas: {{game.languages}}</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="inventory">
+        <th mat-header-cell *matHeaderCellDef> Detalles de venta </th>
+        <td mat-cell *matCellDef="let game">
+          <p>Precio: ${{game.price}}</p> 
+          <p>Stock: {{game.stock}}</p> 
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let game" >
+          <div *ngIf="game.status=='Disponible'"class="active"></div>
+          <div *ngIf="game.status=='Agotado'"class="inactive"></div> 
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns; let game"(click)="updateGame(game)"></tr>
+    </table>
+  </section>
