@@ -1,12 +1,11 @@
 <div *ngIf="session.logged">
-    <div *ngIf="tokenRole">
+    <div *ngIf="tokenRole==='admin'">
       <app-admin></app-admin>
     </div>
-    <div *ngIf="!tokenRole">
+    <div *ngIf="tokenRole==='employee'">
       <app-employee></app-employee>
     </div>
-  </div>
-  
+  </div> 
   <div *ngIf="!session.logged">
     <app-signin></app-signin>
-  </div>
+</div>

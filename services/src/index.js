@@ -2,6 +2,7 @@ const express = require('express');
 const employees=require('./routes/employee.routes.js');
 const customers=require('./routes/customers.routes.js');
 const movies=require('./routes/movie.routes.js')
+const games=require('./routes/game.routes.js');
 const sales=require('./routes/sale.routes.js')
 const auth=require('./auth/auth.routes');
 const pkg=require('../package.json');
@@ -50,6 +51,7 @@ app.use(express.json());
 app.use('/api',customers);
 app.use('/api',employees);
 app.use('/api',movies);
+app.use('/api',games);
 app.use('/api',sales);
 app.use('/api',auth);
 //mongodb connection

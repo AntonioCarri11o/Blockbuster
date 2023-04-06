@@ -30,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from '@angular/forms'
+import {RatingModule} from 'ngx-bootstrap/rating'
 export const materialModules=[
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -63,5 +64,6 @@ export const materialModules=[
     MatSortModule,
     MatTableModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    RatingModule
 ];

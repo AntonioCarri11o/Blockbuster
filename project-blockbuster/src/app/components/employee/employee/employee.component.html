@@ -1,1 +1,28 @@
-<p>employee works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-fab color="primary" (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+        <h3>Empleado</h3>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+        <mat-list>
+            <mat-list-item>
+                <h1><a routerLink="/employee/home"><mat-icon>home</mat-icon> Home</a></h1>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/employee/movies"><mat-icon>movies</mat-icon> Peliculas</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="/employee/games"><mat-icon>games</mat-icon> Videojuegos</a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-raised-button color="warn" (click)="signOut()">Cerrar sesión <mat-icon>power_settings_new</mat-icon></button>
+            </mat-list-item>
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

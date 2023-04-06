@@ -3,10 +3,10 @@ const {newSale,getSales,getById,getByCustomer,update}= require('../controllers/s
 const {verifyToken}= require('../middlewares/authJwt.js')
 const router=express.Router();
 
-router.post('/sale/',verifyToken,newSale);
-router.get('/sale/',verifyToken,getSales);
-router.get('/sale/:id/',verifyToken,getById);
-router.post('/sale/bycustomer/',verifyToken,getByCustomer);
-router.put('/sale/',verifyToken,update);
+router.post('/sale/',newSale);
+router.get('/sale/',getSales);
+router.get('/sale/:id/',getById);
+router.post('/sale/bycustomer/',getByCustomer);
+router.put('/sale/',update);
 
 module.exports=router;

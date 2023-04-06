@@ -24,7 +24,7 @@ export class ListMoviesComponent implements OnInit{
 
   displayedColumns:string[]=['tittle','details','inventory','status']
   dataSource=new MatTableDataSource(movies);
-  
+  tokenRole=localStorage.getItem('role');
   @ViewChild(MatSort)
   sort!: MatSort;
   constructor(
@@ -35,7 +35,6 @@ export class ListMoviesComponent implements OnInit{
     private movieService:MovieService,
     public dialog:MatDialog
 ){
-  
 }
 
   ngOnInit(){

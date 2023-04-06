@@ -1,7 +1,7 @@
 
 <section class="example-container mat-elevation-z8" tabindex="0">
     <div class="d-flex">
-    <button mat-raised-button color="primary" (click)="addGame()">Nuevo<mat-icon>add</mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="tokenRole=='admin'" (click)="addGame()">Nuevo<mat-icon>add</mat-icon></button>
     <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar por título" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -18,11 +18,14 @@
       <ng-container matColumnDef="details">
         <th mat-header-cell *matHeaderCellDef> Ficha </th>
         <td mat-cell *matCellDef="let game">
-          <p>Género: {{game.genre}}</p>
-          <p>Calificación: {{game.rate}}</p>
           <p>Estudio: {{game.studio}}</p>
           <p>Descripción: {{game.description}}</p>
           <p>Idiomas: {{game.languages}}</p>
+          <p>Género: {{game.genre}}</p>
+          <p class="input-group mb-3"><span class="input-group-text">Calificación:</span> 
+            <rating class="form-control" style="color: #f9fd00;font-size: 25px;" [(ngModel)]="game.rate" [readonly]="true" [ngModelOptions]="{standalone: true}">
+            </rating>
+          </p>
         </td>
       </ng-container>
       <ng-container matColumnDef="inventory">
@@ -40,6 +43,11 @@
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns; let game"(click)="updateGame(game)"></tr>
+      <div *ngIf="tokenRole=='admin'">
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let game"(click)="updateGame(game)"></tr>
+      </div>
+      <div *ngIf="tokenRole=='employee'">
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; let game"></tr>
+      </div>
     </table>
   </section>

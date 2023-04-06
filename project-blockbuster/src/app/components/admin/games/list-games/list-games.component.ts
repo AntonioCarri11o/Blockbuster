@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Game } from 'src/app/modules/types/game';
 import { GameService } from 'src/app/services/game.service';
 import { NewgameformComponent } from '../newgameform/newgameform.component';
+import { UpdategameformComponent } from '../updategameform/updategameform.component';
 
 @Component({
   selector: 'app-list-games',
@@ -11,6 +12,7 @@ import { NewgameformComponent } from '../newgameform/newgameform.component';
   styleUrls: ['./list-games.component.css']
 })
 export class ListGamesComponent implements OnInit {
+  tokenRole=localStorage.getItem('role');
   constructor(
     private gameService:GameService,
     public dialog:MatDialog
@@ -27,6 +29,6 @@ export class ListGamesComponent implements OnInit {
     const dialogRef=this.dialog.open(NewgameformComponent,{width:"35%"})
   }
   updateGame(game:Game){
-
+    const dialogRef=this.dialog.open(UpdategameformComponent,{ data:game,width:"35%"})
   }
 }

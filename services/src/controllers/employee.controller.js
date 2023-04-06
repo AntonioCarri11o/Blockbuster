@@ -25,6 +25,7 @@ const createEmployee=async(req,res)=>{
 }
 const getEmployees=async(req,res)=>{
     const listEmployees=await employeeSchema.find();
+    //const listEmployees=await employeeSchema.aggregate([{$lookup:{from:"roles",localField:"roles",foreignField:"_id",as:"roles"}}])
     res.json(listEmployees);
 }
 const getById=async(req,res)=>{

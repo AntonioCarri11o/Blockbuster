@@ -1,0 +1,38 @@
+.mat-elevation-z8{
+    margin:auto;
+    margin-top: 5%;
+    width: 80%;
+  }
+  
+  .example-container {
+    height: auto;
+    max-height: 80%;
+    overflow: auto;
+  }
+  
+  .port{
+    height: 80px;
+  }
+  table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .active{
+    width: 2em;
+    height: 5em;
+    background-color: green;
+    margin-left: 100%;
+  }
+  .inactive{
+    width: 2em;
+    height: 5em;
+    background-color: red;
+    margin-left: 100%;
+  }

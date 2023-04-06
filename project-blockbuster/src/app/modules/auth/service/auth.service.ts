@@ -45,7 +45,7 @@ export class AuthService {
         localStorage.setItem("role",response.role);
         console.log(response.token);
         localStorage.setItem("user",payload.email);
-        if(payload.email==="admin@gmail.com"){
+        if(response.role==="admin"){
           localStorage.setItem("role","admin")
         }else{
           localStorage.setItem("role","employee")
@@ -55,7 +55,7 @@ export class AuthService {
         if(localStorage.getItem("role")==="admin"){
           this.router.navigateByUrl("/admin/home");
         }if(localStorage.getItem("role")==="employee"){
-          this.router.navigateByUrl("/employee")
+          this.router.navigateByUrl("/employee/home")
         }
         
       });

@@ -3,12 +3,20 @@ const saleSchema=require('../models/sale');
 
 const newSale=async(req, res)=>{
     const sale= saleSchema (req.body);
-    await sale.save();
-    res.status(200).json({sale,message:"Venta reliazadacon éxito"});
+    const now=Date.now();
+    const today=new Date(now);
+    sale.saleDate=today;
+    const saveSale=await sale.save();
+    res.status(200).json({sale,message:"Venta reliazada con éxito",saveSale});
 }
 
 const getSales= async(req,res)=>{
-    const salesList=await saleSchema.find();
+    //const salesList=await saleSchema.find();
+    const salesList=await saleSchema.aggregate([
+        {$lookup:{from:"games",localField:"product",foreignField:"_id",as:"game"}},
+        {$lookup:{from:"movies",localField:"product",foreignField:"_id",as:"movie"}},
+        {$lookup:{from:"customers",localField:"customer",foreignField:"_id", as:"customer"}}
+    ])
     res.status(200).json(salesList);
 }
 
@@ -32,3 +40,24 @@ module.exports={
     getByCustomer,
     update
 }
+
+/* CONSULTAR CON EMBEBIDOS
+db.sales.aggregate([
+  {
+  $lookup:{
+    from:"games",
+    localField:"product",
+    foreignField:"_id",
+    as:"product"
+  }
+},
+{
+  $lookup:{
+    from:"customers",
+    localField:"customer",
+    foreignField:"_id",
+    as:"customer"
+  }
+}
+]);
+*/

@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { GameService } from 'src/app/services/game.service';
 
-
-let max = 5;
-const isReadonly = false;
 @Component({
   selector: 'app-newgameform',
   templateUrl: './newgameform.component.html',
   styleUrls: ['./newgameform.component.css']
 })
-export class NewgameformComponent {
-constructor(public matDialogRef:MatDialogRef<NewgameformComponent>, private gameService:GameService){}
+export class NewgameformComponent implements OnInit {
+constructor(public matDialogRef:MatDialogRef<NewgameformComponent>, private gameService:GameService){
+
+}
+ngOnInit(): void {
+  
+}
+isReadonly = false;
   game:any={
     price:0,
     stock:0,
@@ -19,7 +22,7 @@ constructor(public matDialogRef:MatDialogRef<NewgameformComponent>, private game
     description:"",
     languages:[],
     genre:"",
-    status:"",
+    status:"Disponible",
     studio:""
   }
 
@@ -27,7 +30,12 @@ constructor(public matDialogRef:MatDialogRef<NewgameformComponent>, private game
     this.matDialogRef.close();
   }
   send(){
-    this.game.languages=this.game.split(",");
+    this.game.languages=this.game.languages.split(",");
+    if(this.game.stock<1){
+      this.game.status="Agotado"
+    }
     this.gameService.createGame(this.game).subscribe(response=>{console.log(response.message)})
+    this.close();
+    window.location.reload();
   }
 }

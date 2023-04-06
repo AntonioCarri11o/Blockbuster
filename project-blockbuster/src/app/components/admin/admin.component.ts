@@ -11,9 +11,9 @@ export class AdminComponent {
   opened=true;
 constructor(private gereralServices:GeneralService,private router:Router,private loginStateService:LoginStateService){}
   signOut(){
-    localStorage.setItem('token',' ');
-    localStorage.setItem('activePath',' ');
-    localStorage.setItem('role',' ');
+    localStorage.removeItem('token');
+    localStorage.removeItem('activePath');
+    localStorage.removeItem('role');
     this.gereralServices.isLogged=false;
     this.loginStateService.setIsLogged=false;
     this.router.navigate(['/']);

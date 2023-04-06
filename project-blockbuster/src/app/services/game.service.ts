@@ -15,8 +15,16 @@ export class GameService{
     }
     createGame(payload:any){
         const headers={
+            "x-access-token":`${localStorage.getItem('token')}`,
+            //"Authorization": `Bearer ${localStorage.getItem('token')}`
             "Content-type":"application/json"
         }
         return this.http.post<any>(`${APP_URL}api/game`,payload,{headers})
+    }
+    updateGame(payload:any){
+        const headers={
+            "Content-type":"application/json"
+        }
+        return this.http.put<any>(`${APP_URL}api/game`,payload,{headers})
     }
 }

@@ -1,0 +1,21 @@
+.container{
+    width: 80%;
+    margin-top: 5%;
+}
+.mat-icon{
+    width:auto;
+    height: auto;
+    font-size: 10em;
+}
+.col{
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+.button{
+    margin: auto;
+    background-color:bisque;
+    border-radius: 1em;
+}
+.row{
+}

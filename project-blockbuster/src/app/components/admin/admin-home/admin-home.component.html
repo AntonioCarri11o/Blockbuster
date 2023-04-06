@@ -1,1 +1,38 @@
-<p>admin-home works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="button" (click)="navigate('employees')">
+                <mat-icon>person</mat-icon>
+                <h1>Empleados</h1>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="button" (click)="navigate('customers')">
+                <mat-icon>person_outline</mat-icon>
+                <h1>Clientes</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="button" (click)="navigate('movies')">
+                <mat-icon>movie_creation</mat-icon>
+                <h1>Películas</h1>
+            </div>
+        </div>
+        <div class="col">
+            <div class="button" (click)="navigate('games')">
+            <mat-icon>games</mat-icon>
+            <h1>Videojuegos</h1>
+            </div>
+        </div>
+        <div class="col">
+            <div class="button" (click)="navigate('sales')">
+            <mat-icon>attach_money</mat-icon>
+            <h1>Ventas</h1>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,5 @@
 git config --global --add safe.directory D:/Blockbuster
 git config --global user.email "20203tn078@utez.edu.mx"
+
+EJECUCIPON DE SCRIPTS:
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser

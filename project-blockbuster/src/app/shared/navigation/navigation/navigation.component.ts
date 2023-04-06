@@ -14,7 +14,8 @@ export class NavigationComponent {
     return this.loginStateService.isLogged;
   }
   get tokenRole(){
-    return localStorage.getItem('role')==="admin";
+
+    return localStorage.getItem('role');
   }
 
   get tokenAd(){

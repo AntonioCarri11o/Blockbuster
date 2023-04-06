@@ -1,0 +1,37 @@
+<section class="example-container mat-elevation-z8" tabindex="0">
+    <div class="d-flex">
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar por título" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="customer">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let sale" >
+          <!--<img src="../../../../assets/img/default/port.jpg" class="port">-->
+          <p>{{sale.customer[0].name}}</p>
+
+        </td>  
+      </ng-container>
+        <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef> Datos del producto </th>
+            <td mat-cell *matCellDef="let sale" >
+                <div *ngIf="sale.productType==='Movie'">
+                    <p>Tipo: Película</p>
+                    <p>Título: {{sale.movie[0].tittle}}</p>
+                    <p>Precio: {{sale.movie[0].price}}</p>
+
+                </div>
+                <div *ngIf="sale.productType==='Game'">
+                    <p>Tipo: Juego</p>
+                    <p>Título: {{sale.game[0].tittle}}</p>
+                    <p>Precio: {{sale.game[0].price}}</p>
+                </div>
+                <p>Cantidad:    {{sale.cuantity}}</p>
+            </td>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+      <tr mat-row    *matRowDef="let row; columns: displayedColumns; let movie"></tr>
+    </table>
+  </section>

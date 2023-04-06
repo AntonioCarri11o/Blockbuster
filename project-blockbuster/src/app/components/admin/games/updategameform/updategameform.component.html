@@ -1,0 +1,46 @@
+<div class="row">
+    <div mat-dialog-title class="col"><h1>Actualizar juego</h1></div>
+    <div class="col right">
+        <button mat-mini-fab matTooltip="Cerrar" color="warn" (click)="close()"><mat-icon>cancel</mat-icon></button>
+    </div>
+</div>
+<form #NewGameForm="ngForm" class="cont"novalidate (submit)="update()">
+    <div mat-dialog-content>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Título</span>
+            <input type="text" matInput required name="tittle" #name="ngModel" [(ngModel)]="game.tittle" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Precio</span>
+            <input type="number" matInput required name="price" #name="ngModel" [(ngModel)]="game.price" class="form-control">
+            <span class="input-group-text">Existencias</span>
+            <input type="number" matInput required name="stock" #name="ngModel" [(ngModel)]="game.stock" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Calificación</span>
+            <rating class="form-control" style="color: #f9fd00;font-size: 30px;" [(ngModel)]="game.rate" [readonly]="isReadonly" [ngModelOptions]="{standalone: true}">
+            </rating>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Descripción</span>
+            <textarea matInput required name="description" #name="ngModel" [(ngModel)]="game.description" class="form-control">
+            </textarea>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Idiomas</span>
+            <input type="text" matInput required name="languages" #name="ngModel" [(ngModel)]="game.languages" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Género</span>
+            <input type="text" matInput required name="genre" #name="ngModel" [(ngModel)]="game.genre" class="form-control">
+            <span class="input-group-text">Estudio</span>
+            <input type="text" matInput required name="studio" #name="ngModel" [(ngModel)]="game.studio" class="form-control">
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="right">
+            <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+            <button mat-raised-button  type="submit">Hecho</button>
+        </div>
+    </div>
+</form>

@@ -25,6 +25,7 @@ export class SigninComponent {
     if(!!localStorage.getItem('token')){
       this.router.navigate(['']);
       if(!this.generalServices.isLogged) {
+
         this.router.navigateByUrl('/');
       }
     }
@@ -36,6 +37,5 @@ export class SigninComponent {
   signin(){
     this.AuthService.signin(this.user);
     this.generalServices.isLogged=true;
-    this.router.navigate(['/admin']);
   }
 }

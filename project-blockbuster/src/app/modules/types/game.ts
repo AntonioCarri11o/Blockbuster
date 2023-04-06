@@ -5,7 +5,7 @@ export type Game={
     stock:number,
     rate:number,
     description:string,
-    languages:[],
+    languages:string[],
     genre:string,
     status:string,
     studio:string

@@ -11,7 +11,7 @@ const signUp=async(req,res)=>{
     const newEmployee= new Employee({
         _id,
         username,
-        email,
+        email, 
         password:await Employee.encryptPassword(pass)    
     });
     if(roles){
@@ -27,14 +27,14 @@ const signUp=async(req,res)=>{
 }
 
 const signIn=async(req,res)=>{
-    const emp=await Employee.findOne({email:req.body.email}).populate("roles");
-    const [role]=emp.roles;
-    console.log(role.name);
+    //const emp=await Employee.findOne({email:req.body.email}).populate("roles");
+    const emp=await Employee.findOne({$or:[{email:{$eq:req.body.email}},{username:{$eq:req.body.email}}]}).populate("roles");
     if(!emp) return res.status(400).json({message:"Employee not found"});
     const matchPassword=await Employee.comparePassword(req.body.password,emp.password);
 
     if(!matchPassword) return res.status(401).json({token:null, message:"Invalid password"});
     const token=jwt.sign({id:emp._id}, config.SECRET,{ expiresIn:86400});
+    const [role]= emp.roles;
     res.json({token,"role":role.name});
 }
 

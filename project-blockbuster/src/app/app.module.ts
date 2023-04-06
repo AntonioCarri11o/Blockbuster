@@ -22,6 +22,10 @@ import { UpdateemployeeformComponent } from './components/admin/updateemployeefo
 import { SetPasswordComponent } from './components/admin/set-password/set-password.component';
 import { ListGamesComponent } from './components/admin/games/list-games/list-games.component';
 import { NewgameformComponent } from './components/admin/games/newgameform/newgameform.component';
+import { UpdategameformComponent } from './components/admin/games/updategameform/updategameform.component';
+import { ListCustomerComponent } from './components/admin/customer/list-customer/list-customer.component';
+import { ListSalesComponent } from './components/admin/sales/list-sales/list-sales.component';
+import { EmployeeHomeComponent } from './components/employee/screens/employee-home/employee-home.component';
 //import { NewMovieFormComponent } from './components/admin/new-movie-form/new-movie-form.component';
 const appRoutes:Routes=[
   {path:'',component:NavigationComponent},
@@ -30,6 +34,13 @@ const appRoutes:Routes=[
   {path:`admin/movies`,component:ListMoviesComponent},
   {path:`admin/employees`,component:ListEmployeesComponent},
   {path:'admin/games',component:ListGamesComponent},
+  {path:`admin/customers`,component:ListCustomerComponent},
+  {path:`admin/sales`,component:ListSalesComponent},
+
+  {path:`employee`,component:EmployeeComponent},
+  {path:`employee/home`,component:EmployeeHomeComponent},
+  {path:`employee/movies`,component:ListMoviesComponent},
+  {path:`employee/games`,component:ListGamesComponent},
 ]
 @NgModule({
   declarations: [
@@ -47,6 +58,10 @@ const appRoutes:Routes=[
     SetPasswordComponent,
     ListGamesComponent,
     NewgameformComponent,
+    UpdategameformComponent,
+    ListCustomerComponent,
+    ListSalesComponent,
+    EmployeeHomeComponent,
     //NewMovieFormComponent,
 
   ],

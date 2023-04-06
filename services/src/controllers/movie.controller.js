@@ -53,6 +53,11 @@ const update = async (req, res) => {
   });
   res.status(200).json({ message: "Pelicula actualizada" });
 };
+const deleteMovie=async(req,res)=>{
+  const {id}=req.params;
+  await movieSchema.remove({_id:`${id}`});
+  res.status(200).json({message:"Película eliminada"});
+}
 
 module.exports = {
   getMovies,
@@ -60,5 +65,6 @@ module.exports = {
   getById,
   getByName,
   update,
+  deleteMovie,
   getImages
 };
