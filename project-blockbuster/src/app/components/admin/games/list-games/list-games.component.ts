@@ -12,6 +12,16 @@ import { UpdategameformComponent } from '../updategameform/updategameform.compon
   styleUrls: ['./list-games.component.css']
 })
 export class ListGamesComponent implements OnInit {
+  options:string[]=["tittle","studio","genre","languages",]
+  tArrow=""
+  pArrow=""
+
+  payload={
+    order:1,
+    field:"",
+    orderField:"id",
+    value:"",
+  }
   tokenRole=localStorage.getItem('role');
   constructor(
     private gameService:GameService,
@@ -27,6 +37,30 @@ export class ListGamesComponent implements OnInit {
 
   addGame(){
     const dialogRef=this.dialog.open(NewgameformComponent,{width:"35%"})
+  }
+  tOrder(){
+    this.payload.order=this.payload.order*-1;
+    this.pArrow=""
+    if(this.payload.order==1)this.tArrow="↑"
+    if(this.payload.order==-1)this.tArrow="↓"
+    this.payload.orderField="tittle"
+    this.findByTags();
+  }
+  pOrder(){
+    this.payload.order=this.payload.order*-1;
+    this.tArrow=""
+    if(this.payload.order==1)this.pArrow="↑"
+    if(this.payload.order==-1)this.pArrow="↓"
+    this.payload.orderField="price"
+    this.findByTags();
+  }
+
+  findByTags(){
+    if(this.payload.field===""||this.payload.value===""){
+      this.gameService.getSorter(this.payload.orderField,this.payload.order).subscribe(response=>{this.dataSource=response})
+    }else{
+      this.gameService.getByTags(this.payload.field,this.payload.value,this.payload.orderField,this.payload.order).subscribe(response=>{this.dataSource=response})
+    }
   }
   updateGame(game:Game){
     const dialogRef=this.dialog.open(UpdategameformComponent,{ data:game,width:"35%"})

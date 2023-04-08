@@ -39,8 +39,21 @@ const getMovies = async (req, res) => {
 
 const getById = async (req, res) => {
   const movie = await movieSchema.findById(req.params.id);
+  console.log(req.params.extra)
   res.json(movie);
 };
+
+const getSorter= async(req,res)=>{
+  const {field,order}=req.params;
+  const listMovies=await movieSchema.aggregate([{ $sort:{[field]:Number(order)}}]);
+  res.json(listMovies);
+}
+
+const getBytags=async(req,res)=>{
+  const {field,name,orderField,order}=req.params;
+  const listMovies=await movieSchema.find({$or:[{[field]:{$all:[`${name}`]}},{[field]:name}]}).sort({[orderField]:order})
+  res.json(listMovies);
+}
 
 const getByName = async (req, res) => {
     const tittle=req.body.tittle;
@@ -66,5 +79,7 @@ module.exports = {
   getByName,
   update,
   deleteMovie,
-  getImages
+  getImages,
+  getSorter,
+  getBytags
 };

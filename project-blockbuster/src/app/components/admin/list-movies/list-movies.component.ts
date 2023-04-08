@@ -12,8 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewmovieformComponent } from '../newmovieform/newmovieform.component';
 import { UpdatemovieformComponent } from '../updatemovieform/updatemovieform.component';
 
-
 let movies:Movie[];
+
 @Component({
   selector: 'app-list-movies',
   templateUrl: './list-movies.component.html',
@@ -22,9 +22,21 @@ let movies:Movie[];
 
 export class ListMoviesComponent implements OnInit{
 
+  options:string[]=["tittle","producer","genre","languages"]
+  tArrow=""
+  pArrow=""
+
+  payload={
+    order:1,
+    field:"",
+    orderField:"id",
+    value:"",
+  }
+
   displayedColumns:string[]=['tittle','details','inventory','status']
   dataSource=new MatTableDataSource(movies);
   tokenRole=localStorage.getItem('role');
+
   @ViewChild(MatSort)
   sort!: MatSort;
   constructor(
@@ -33,7 +45,8 @@ export class ListMoviesComponent implements OnInit{
     private loginStateService:LoginStateService,
     private _liveAnnouncer:LiveAnnouncer,
     private movieService:MovieService,
-    public dialog:MatDialog
+    public dialog:MatDialog,
+
 ){
 }
 
@@ -47,6 +60,34 @@ export class ListMoviesComponent implements OnInit{
   }
   updateMovie(movie:Movie){
     const dialogRef=this.dialog.open(UpdatemovieformComponent,{data:movie,width:"35%"});
+  }
+  tOrder(){
+    this.payload.order=this.payload.order*-1;
+    this.pArrow=""
+    if(this.payload.order==1)this.tArrow="↑"
+    if(this.payload.order==-1)this.tArrow="↓"
+    this.payload.orderField="tittle"
+    this.findByTags();
+  }
+  pOrder(){
+    this.payload.order=this.payload.order*-1;
+    this.tArrow=""
+    if(this.payload.order==1)this.pArrow="↑"
+    if(this.payload.order==-1)this.pArrow="↓"
+    this.payload.orderField="price"
+    this.findByTags();
+  }
+  findByTags(){
+    //console.log(this.payload)
+    console.log(this.payload)
+    if(this.payload.field==="" || this.payload.value===""){
+      this.movieService.sortBy(this.payload.orderField,this.payload.order).subscribe(resp=>{this.dataSource=resp})
+    }else{
+      this.movieService.findByTags(this.payload.field,this.payload.value,this.payload.orderField,this.payload.order).subscribe(resp=>{this.dataSource=resp});
+    }
+    
+
+    
   }
 
 }

@@ -1,12 +1,29 @@
 
-<section class="example-container mat-elevation-z8" tabindex="0">
-    <div class="d-flex">
-    <button mat-raised-button color="primary" *ngIf="tokenRole=='admin'" (click)="addGame()">Nuevo<mat-icon>add</mat-icon></button>
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar por título" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+<div class="row w-100 p-3">
+  <div class="col d-flex">
+    <form #Searchform="ngForm" (submit)="findByTags()" class="d-flex mb-3" role="search">
+      <mat-form-field class="w-50">
+        <mat-label>Buscar por</mat-label>
+        <mat-select [(ngModel)]="payload.field" name="select">
+          <mat-option [value]="item" *ngFor="let item of options">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput [placeholder]="payload.field" name="value" [(ngModel)]="payload.value">
+      </mat-form-field>
+      <button mat-raised-button class="" type="submit">Buscar</button>
     </form>
   </div>
+  <div class="col d-flex">
+    <mat-button-toggle-group class="h-50">
+      <mat-button-toggle (click)="tOrder()">Titulo {{tArrow}}</mat-button-toggle>
+      <mat-button-toggle (click)="pOrder()">Precio {{pArrow}}</mat-button-toggle>
+    </mat-button-toggle-group>
+    <button mat-raised-button color="primary" *ngIf="tokenRole=='admin'" (click)="addGame()">Nueva<mat-icon>add</mat-icon></button>
+  </div>
+</div>
+<section class="example-container mat-elevation-z8" tabindex="0">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="tittle">
         <th mat-header-cell *matHeaderCellDef> Título </th>

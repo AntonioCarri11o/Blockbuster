@@ -28,6 +28,16 @@ const getGames= async(req,res)=>{
     const listGames= await gameSchema.find();
     res.json(listGames);
 }
+const getSorter=async(req,res)=>{
+    const {field,order}=req.params;
+    const listGames=await gameSchema.aggregate([{$sort:{[field]:Number(order)}}]);
+    res.json(listGames);
+}
+const getByTags=async(req,res)=>{
+    const {field,value,orderField,order}=req.params;
+    const listGames=await gameSchema.find({$or:[{[field]:{$all:[`${value}`]}},{[field]:value}]}).sort({[orderField]:order})
+    res.json(listGames);
+}
 const update=async(req,res)=>{
     await gameSchema.findByIdAndUpdate(req.body._id,req.body,{new:true});
     res.status(200).json({message:"Juego actualizado con éxito!"});
@@ -42,5 +52,7 @@ module.exports={
     createGame,
     getGames,
     update,
-    deleteGame
+    deleteGame,
+    getSorter,
+    getByTags
 }

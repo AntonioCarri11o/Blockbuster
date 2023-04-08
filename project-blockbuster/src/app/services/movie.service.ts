@@ -15,6 +15,17 @@ export class MovieService{
     getMovies(){
         return this.http.get<any>(`${APP_URL}api/movie`)
     }
+    sortBy(field:String,order:Number){
+        return this.http.get<any>(`${APP_URL}api/movie/sorter/${field}/${order}`)
+    }
+    findByTags(field:String,name:String,orderField:String,order:Number){
+        try{
+            return this.http.get<any>(`${APP_URL}api/movie/getBytags/${field}/${name}/${orderField}/${order}`)    
+        }catch(error){
+            console.log("Missing fields")
+            return this.http.get<any>(`${APP_URL}api/movie`)
+        }
+    }
     createMovie(payload:any){
         const headers={
             "Content-type":"application/json"

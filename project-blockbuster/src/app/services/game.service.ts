@@ -13,6 +13,12 @@ export class GameService{
     getGames(){
         return this.http.get<any>(`${APP_URL}api/game`);
     }
+    getSorter(field:String,order:Number){
+        return this.http.get<any>(`${APP_URL}api/game/${field}/${order}`)
+    }
+    getByTags(field:String,value:String,orderField:String,order:Number){
+        return this.http.get<any>(`${APP_URL}api/game/${field}/${value}/${orderField}/${order}`)
+    }
     createGame(payload:any){
         const headers={
             "x-access-token":`${localStorage.getItem('token')}`,
