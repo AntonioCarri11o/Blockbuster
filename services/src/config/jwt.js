@@ -1,8 +1,11 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');//Librería de token
 
+//Generar token
 const generateToken=(payload)=>{
     return jwt.sign(payload,process.env.SECRET); 
 }
+
+//Validar token
 const auth=async (req,res,next)=>{
     try{
         const token = req.headers.authorization?.replace('Bearer','');
@@ -14,6 +17,7 @@ const auth=async (req,res,next)=>{
         res.status(401).json({message:'Unauthorized'});
     }
 }
+
 const checkRoles = (roles) =>{
     return async (req,res,next) =>{
         try{

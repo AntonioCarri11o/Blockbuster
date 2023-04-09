@@ -12,6 +12,12 @@ export class EmployeeService{
     getEmployees(){
         return this.http.get<any>(`${APP_URL}api/employee`)
     }
+    sortBy(field:String, order:Number){
+        return this.http.get<any>(`${APP_URL}api/employee/${field}/${order}`)
+    }
+    findByTags(field:String,value:String,orderField:String,order:Number){
+        return this.http.get<any>(`${APP_URL}api/employee/${field}/${value}/${orderField}/${order}`)
+    }
     createEmployee(payload:any){
         const headers={
             "Content-type":"application/json"

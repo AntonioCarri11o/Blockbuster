@@ -1,5 +1,11 @@
+//ESQUEMA MONGOOSE DE MOVIE
+
+//Importación de mongoose
 const {mongoose,Schema}= require('mongoose');
-const {appConfig} =require('../config')
+const {appConfig} =require('../config');
+
+
+//Atributos del esquma 'Movie'
 const movieSchema=mongoose.Schema(
     {
         "tittle":{type:String},
@@ -10,13 +16,8 @@ const movieSchema=mongoose.Schema(
         "languages":[],
         "status":{type:String},
         "genre":[],
-        //"filename":{type:String}
     }
 );
 
-movieSchema.methods.setImgUrl=function setImgUrl(filename){
-    const {host, port}=appConfig;
-    this.setImgUrl=`${host}:${port}/public/${filename} `
-}
-
+//Exportar esquema
 module.exports=mongoose.model("Movie",movieSchema);

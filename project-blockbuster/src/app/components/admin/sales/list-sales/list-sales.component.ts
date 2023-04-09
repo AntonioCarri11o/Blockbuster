@@ -11,7 +11,7 @@ let sales:Sale[];
   styleUrls: ['./list-sales.component.css']
 })
 export class ListSalesComponent implements OnInit {
-  displayedColumns:string[]=['customer','product'];
+  displayedColumns:string[]=['customer','product','sale'];
   dataSource=new MatTableDataSource(sales);
   constructor(private saleService:SaleService){}
   ngOnInit(): void {

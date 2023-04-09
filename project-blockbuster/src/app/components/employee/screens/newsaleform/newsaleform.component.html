@@ -1,0 +1,61 @@
+
+<div class="row">
+    <div mat-dialog-title class="col"><h1>Nueva Venta</h1></div>
+    <div class="col right">
+        <button mat-mini-fab matTooltip="Cerrar" color="warn" (click)="close()"><mat-icon>cancel</mat-icon></button>
+    </div>
+</div>
+<form #NewMovieForm="ngForm" class="cont"novalidate (submit)="send()">
+
+    <div mat-dialog-content>
+        <p>Cliente</p>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Nombre</span>
+            <input type="text" matInput required name="name" #name="ngModel" [(ngModel)]="customer.name" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Dirección</span>
+            <input type="text" matInput required name="address" #name="ngModel" [(ngModel)]="customer.address" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Teléfono</span>
+            <input type="text" matInput required name="phone_number" #name="ngModel" [(ngModel)]="customer.phone_number" class="form-control">
+        </div>
+        <p>Producto</p>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Tipo</span>
+            <mat-select [(ngModel)]="sale.productType" required name="select" class="form-control">
+                <mat-option value="Movie" >Película</mat-option>
+                <mat-option value="Game" >Juego</mat-option>
+            </mat-select>
+        </div>
+        <div *ngIf="sale.productType=='Movie'" class="input-group mb-3">
+            <span class="input-group-text">Película</span>
+            <mat-select [(ngModel)]="sale.product._id" required name="select" class="form-control">
+                <mat-option [value]="movie._id" (click)="setPrice(movie.price)" *ngFor="let movie of movies">{{movie.tittle}}</mat-option>
+            </mat-select>
+        </div>
+        <div *ngIf="sale.productType=='Game'" class="input-group mb-3">
+            <span class="input-group-text">Juego</span>
+            <mat-select [(ngModel)]="sale.product._id" required name="select" class="form-control">
+                <mat-option [value]="game._id" (click)="setPrice(game.price)" *ngFor="let game of games">{{game.tittle}}</mat-option>
+            </mat-select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Precio unitario</span>
+            <div class="form-control">{{sale.price}}</div>
+            <span class="input-group-text">Cantidad</span>
+            <input type="number" matInput required name="quantity" #name="ngModel" (change)="setTotal()" [(ngModel)]="sale.quantity" class="form-control">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Total</span>
+            <div class="form-control">{{sale.total}}</div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <div class="right">
+        <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+        <button mat-raised-button  type="submit">Hecho</button>
+        </div>
+    </div>
+</form>

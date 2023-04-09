@@ -1,12 +1,12 @@
+//ESQUEMA MONGOOSE DE CUSTOMER
+
+//Importación de mongoose
 const mongoose=require("mongoose");
 
 
+//Atributos del esquma 'Customer'
 const customerSchema=mongoose.Schema({
     "name":{
-        type:String,
-        required:true
-    },
-    "lastname":{
         type:String,
         required:true
     },
@@ -20,5 +20,5 @@ const customerSchema=mongoose.Schema({
     }
 
 });
-//const Model =mongoose.model('Blockbuster',customerSchema)
+//Exportar esquema
 module.exports=mongoose.model('Customer',customerSchema);

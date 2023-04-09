@@ -85,9 +85,6 @@ export class ListMoviesComponent implements OnInit{
     }else{
       this.movieService.findByTags(this.payload.field,this.payload.value,this.payload.orderField,this.payload.order).subscribe(resp=>{this.dataSource=resp});
     }
-    
-
-    
   }
 
 }

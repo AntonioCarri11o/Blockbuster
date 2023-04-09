@@ -1,3 +1,4 @@
+//SERVICIO DE INICIO DE SESIÓN
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,7 +22,6 @@ export class AuthService {
 
   signin(payload: UserLogin){
     this.loading = true;
-    //Hacer peticiones
     this.http.post<any>(`${APP_URL}api/signin`, payload,{
       headers: {"Content-Type": "application/json"},
     })
@@ -32,15 +32,6 @@ export class AuthService {
         })
       )
       .subscribe((response) =>{
-        /*
-        localStorage.setItem('token', response.token);
-        //this.generalServices.token = response.token;
-        this.generalServices.isLogged = true;
-
-        console.log(this.generalServices.token);
-        this.loading = false;
-        this.router.navigate(['/']);
-        */
         localStorage.setItem("token", response.token);
         localStorage.setItem("role",response.role);
         console.log(response.token);
@@ -59,6 +50,5 @@ export class AuthService {
         }
         
       });
-      //console.log(this.token)
   }
 }

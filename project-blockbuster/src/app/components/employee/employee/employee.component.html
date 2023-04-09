@@ -18,6 +18,9 @@
                 <a routerLink="/employee/games"><mat-icon>games</mat-icon> Videojuegos</a>
             </mat-list-item>
             <mat-list-item>
+                <button mat-raised-button color="primary" (click)="newSale()">Nueva venta</button>
+            </mat-list-item>
+            <mat-list-item>
                 <button mat-raised-button color="warn" (click)="signOut()">Cerrar sesión <mat-icon>power_settings_new</mat-icon></button>
             </mat-list-item>
         </mat-list>

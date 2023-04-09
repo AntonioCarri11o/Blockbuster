@@ -3,6 +3,8 @@ export type Sale = {
     productType:string,
     product:{},
     customer:{},
-    cuantity:number,
+    price:Number,
+    quantity:number,
+    total:Number,
     saleDate:Date,
 }

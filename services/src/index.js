@@ -1,3 +1,6 @@
+//PRINCIPAL DEL SERVIDOR
+
+//Importaciones
 const express = require('express');
 const employees=require('./routes/employee.routes.js');
 const customers=require('./routes/customers.routes.js');
@@ -11,41 +14,17 @@ const mongoose=require("mongoose");
 const {createRoles} =require("./libs/initialSetup");
 const cors= require ('cors');
 const path=require('path');
-//const sharp = require('sharp');
-//const multer = require('multer');
-//const path=require('path');
-//const {upload}= require('./middlewares/fileUpload')
 
 require ("dotenv").config();
-//const cors = require('cors');
 
-const app = express(); // < -- usermos el servicio de app
-app.use(cors());
-/*
-app.post('/upload/',upload.single('file'),(req,res)=>{
-    res.send({data:'Imagen cargada'})
-})
-*/
-
-/*
-//Middlewares
-app.use(express.json()); //Indicamos que nuestros metodos son Json
-app.use(express.urlencoded({extended:false})); //Esto es para los input de nuestros formularios
-
-
-//Rutas para nuestro servicio
-app.use('/api',employees.routerEmployee);
-app.use('/api',auth.authRouter);
+const app = express(); //La librería express permite crear un servidor de nodeJs
+app.use(cors());//Permite la realización de solicitudes de origen cruzado
 
 //Arranque de nuestro Server
-*/
 //Settings
 app.set('port',process.env.PORT || 3000); //El puerto que estaremos usando en todo momento 
 app.set('json spaces',2) //Espacios para nuestro json *Es irrelente pero lo hace estetico*
 app.set('pkg',pkg)
-app.get("/",(req,res)=>{
-    res.send("Welcome to my API")
-});
 //Middlewares
 app.use(express.json());
 app.use('/api',customers);
@@ -54,12 +33,10 @@ app.use('/api',movies);
 app.use('/api',games);
 app.use('/api',sales);
 app.use('/api',auth);
-//mongodb connection
+//Arrancar el server
 app.listen(app.get('port'), () =>{
-    mongoose.connect(process.env.MONGODBURI).then(()=>{console.log("Conected to MongoDB");createRoles();})
+    //Conexión con mongoDB
+    mongoose.connect(process.env.MONGODBURI).then(()=>{console.log("Conected to MongoDB");createRoles();})//<- Al hacer la conexión se ejecuta el metodo 'createRoles'
     .catch((error)=>console.log(error));
-    console.log(`Server running in port: ${app.get('port')}`);
-    let now=new Date();
-    console.log(now.toDateString());
-    //createRoles();
+    console.log(`Server running in port: ${app.get('port')}`);//Mensaje de inicio de servidor
 });

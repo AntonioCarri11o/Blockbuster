@@ -1,13 +1,17 @@
 const express= require('express');
 const saleSchema=require('../models/sale');
+const customerShema=require('../models/customer');
 
 const newSale=async(req, res)=>{
-    const sale= saleSchema (req.body);
+    const customer=customerShema(req.body.customer);
+    const response=await customer.save();
+    req.body.customer._id=response._id;
+    sale=saleSchema(req.body);
     const now=Date.now();
     const today=new Date(now);
     sale.saleDate=today;
     const saveSale=await sale.save();
-    res.status(200).json({sale,message:"Venta reliazada con éxito",saveSale});
+    res.status(200).json({message:"Venta reliazada con éxito"});
 }
 
 const getSales= async(req,res)=>{

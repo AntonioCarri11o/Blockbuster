@@ -1,19 +1,22 @@
+//IMPORTACIONES//
+//Modulos
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import { NavigationComponent } from './shared/navigation/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { materialModules } from './types/material-modules';
 import { AuthModule } from './modules/auth/auth.module';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+
+//Componentes
+import { AppComponent } from './app.component';
+import { NavigationComponent } from './shared/navigation/navigation/navigation.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { EmployeeComponent } from './components/employee/employee/employee.component'; 
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { ListMoviesComponent } from './components/admin/list-movies/list-movies.component';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { NewmovieformComponent } from './components/admin/newmovieform/newmovieform.component';
 import { UpdatemovieformComponent } from './components/admin/updatemovieform/updatemovieform.component';
 import { ListEmployeesComponent } from './components/admin/list-employees/list-employees.component';
@@ -26,7 +29,9 @@ import { UpdategameformComponent } from './components/admin/games/updategameform
 import { ListCustomerComponent } from './components/admin/customer/list-customer/list-customer.component';
 import { ListSalesComponent } from './components/admin/sales/list-sales/list-sales.component';
 import { EmployeeHomeComponent } from './components/employee/screens/employee-home/employee-home.component';
-//import { NewMovieFormComponent } from './components/admin/new-movie-form/new-movie-form.component';
+import { NewsaleformComponent } from './components/employee/screens/newsaleform/newsaleform.component';
+
+//Rutas para la navegación de componentes para administrador
 const appRoutes:Routes=[
   {path:'',component:NavigationComponent},
   {path:'admin',component:AdminComponent},
@@ -36,35 +41,38 @@ const appRoutes:Routes=[
   {path:'admin/games',component:ListGamesComponent},
   {path:`admin/customers`,component:ListCustomerComponent},
   {path:`admin/sales`,component:ListSalesComponent},
-
+//Rutas para la navegación de componentes para empleado
   {path:`employee`,component:EmployeeComponent},
   {path:`employee/home`,component:EmployeeHomeComponent},
   {path:`employee/movies`,component:ListMoviesComponent},
   {path:`employee/games`,component:ListGamesComponent},
 ]
+
+//Se declaran los componentes para exportar y poder usar en toda la aplicación
 @NgModule({
   declarations: [
-    AppComponent,
-    NavigationComponent,
-    AdminComponent,
-    EmployeeComponent,
-    AdminHomeComponent,
-    ListMoviesComponent,
-    NewmovieformComponent,
-    UpdatemovieformComponent,
-    ListEmployeesComponent,
-    NewemployeeformComponent,
-    UpdateemployeeformComponent,
-    SetPasswordComponent,
-    ListGamesComponent,
-    NewgameformComponent,
-    UpdategameformComponent,
-    ListCustomerComponent,
-    ListSalesComponent,
-    EmployeeHomeComponent,
-    //NewMovieFormComponent,
-
+    AppComponent,//Componente principal, permite desplegar los componentes encima
+    NavigationComponent,//Componente de navegación, permite de moverse entre componentes
+    AdminComponent,//Componente principal de administrador
+    EmployeeComponent,//Componente principal de empleado
+    AdminHomeComponent,//Vista de administrador
+    ListMoviesComponent,//Vista de lista películas
+    NewmovieformComponent,//Formulario para agregar nuevas películas
+    UpdatemovieformComponent,//Formulario para actualización de películas
+    ListEmployeesComponent,//Vista de lista de empleados
+    NewemployeeformComponent,//Formulario para agregar nuevos empleados
+    UpdateemployeeformComponent,//Formulario para actualizar empleados
+    SetPasswordComponent,//Formulario para actualizar contraseña de empleado
+    ListGamesComponent,//Vista de lista de juegos
+    NewgameformComponent,//Formulario para agregar juegos
+    UpdategameformComponent,//Formulario para actualizar juegos
+    ListCustomerComponent,//Vista de lista de clientes
+    ListSalesComponent,//Vista de lista de ventas
+    EmployeeHomeComponent,//Vista de empleado
+    NewsaleformComponent,//Formulario para agregar una nueva venta
   ],
+
+//Se importan los módulos para usarse en toda la aplicación
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,

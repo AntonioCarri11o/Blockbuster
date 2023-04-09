@@ -1,17 +1,37 @@
+//RUTAS PARA GESTIÓN DE CLIENTES
 const express=require("express");
-const {getCustomers,getById,createCustomer,updateCustomer}=require('../controllers/customer.controller.js');
+const {getCustomers,getById,createCustomer,updateCustomer, getSorter, getByTags}=require('../controllers/customer.controller.js');
 const { verifyToken } = require("../middlewares/authJwt.js");
-const router=express.Router();
+const router=express.Router();//La librería express con el método Router() pemrite la creación de rutas
 
-//middlewares
 
-//Crear cliente
+//Crear nuevo
 router.post('/customer/',createCustomer);
-//Listar clientes
+
+//Listar sin filtro ni ordenamiento
 router.get("/customer/",getCustomers);
-//Consultar cliente por id
+
+//Listar con ordenamiento por campo
+/*
+'field': Campo de ordenamiento,
+'order': Valor entero de ordenamiento (1/-1)
+*/
+router.get("/customer/:field/:order/",getSorter);
+
+//Listar con filtrado y ordenamiento por campo
+/*
+'field':Campo filtro,
+'value':Valor a comparar,
+'orderField': Campo de ordenamiento,
+'order': Valor entero de ordenamiento (1/-1)
+*/
+router.get('/customer/:field/:value/:orderField/:order/',getByTags)
+
+//Consultar cliente por id (no se usa)
 router.get("/customer/:id",getById);
-//Actualizar clieente
+
+//Actualizar
 router.put("/customer/",updateCustomer);
-//Exportar rutas
+
+//Se exporta router, router contiene todas las rutas de customers
 module.exports=router;

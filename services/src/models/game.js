@@ -1,6 +1,11 @@
+////ESQUEMA MONGOOSE DE GAME
+
+//Importación de mongoose
 const {mongoose, Schema}=require('mongoose');
 const {appConfig}=require('../config')
 
+
+//Atributos del esquma 'Game'
 const gameSchema=mongoose.Schema(
     {
         "tittle":{type:String},
@@ -12,12 +17,8 @@ const gameSchema=mongoose.Schema(
         "genre":{type:String},
         "status":{type:String},
         "studio":{type:String},
-        //"filename":{type:String}
     }
 )
-gameSchema.methods.setImgUrl=function setImgUrl(filename){
-    const {host,port}=appConfig;
-    this.setImgUrl=`${host}:${port}/public/${filename}`
-}
 
+//Exportar esquema
 module.exports=mongoose.model("Game",gameSchema);

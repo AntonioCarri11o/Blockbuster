@@ -9,6 +9,13 @@ export class SaleService{
     constructor(private http:HttpClient){}
     private loading:boolean=false;
 
+    newSale(payload:any){
+        const headers={
+            "Content-type":"application/json"
+        }
+        return this.http.post<any>(`${APP_URL}api/sale/`,payload,{headers});
+
+    }
     getSales(){
         return this.http.get<any>(`${APP_URL}api/sale/`);
     }
